@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from Wolf.models import UserProfile
 
 
 class Asset(models.Model):
@@ -280,6 +280,8 @@ class NIC(models.Model):
 class RaidAdaptor(models.Model):
 	asset = models.ForeignKey('Asset')
 	sn = models.CharField(u'sn号', max_length=128, blank=True, null=True)
+
+
 	slot = models.CharField(u'插口', max_length=64)
 	model = models.CharField(u'型号', max_length=64, blank=True, null=True)
 	memo = models.TextField(u'备注', blank=True, null=True)
@@ -291,9 +293,6 @@ class RaidAdaptor(models.Model):
 	class Meta:
 		unique_together = ("asset", "slot")
 
-
-class UserProfile(models.Model):
-	user = models.OneToOneField(User)
 
 
 
